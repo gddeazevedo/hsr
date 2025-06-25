@@ -1,3 +1,5 @@
 .vscode
 asmjit
-main
+
+out/*
+!out/.gitkeep
