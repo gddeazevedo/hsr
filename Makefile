@@ -2,8 +2,6 @@ IMAGE=hsr
 FILE=main.cc
 PWD=$(shell pwd)
 
-all: run
-
 build:
 	docker build -t $(IMAGE) .
 
@@ -17,6 +15,3 @@ run:
 run-demo:
 	docker run --rm -v "$(PWD)":/app -w /app $(IMAGE) \
 		bash -c "g++ demos/$(file) -o out/demo_exec /usr/local/lib/libasmjit.a && ./out/demo_exec"
-
-clean:
-	rm -f main
