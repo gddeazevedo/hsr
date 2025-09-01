@@ -43,15 +43,15 @@ struct Tree {
     }
 };
 
-void gen_assembly_from_tree(
+void generate_assembly_from_tree(
     const std::unique_ptr<TreeNode>& node,
     asmjit::x86::Assembler& a,
     std::vector<asmjit::x86::Vec>& reg_stack
 ) {
     if (!node) return;
 
-    gen_assembly_from_tree(node->left, a, reg_stack);
-    gen_assembly_from_tree(node->right, a, reg_stack);
+    generate_assembly_from_tree(node->left, a, reg_stack);
+    generate_assembly_from_tree(node->right, a, reg_stack);
 
     if (node->type == NodeType::Operator) {
         asmjit::x86::Vec right = reg_stack.back(); reg_stack.pop_back();
@@ -113,7 +113,7 @@ int main() {
 
     std::vector<asmjit::x86::Vec> reg_reg_stack;
 
-    gen_assembly_from_tree(tree->root, a, reg_reg_stack);
+    generate_assembly_from_tree(tree->root, a, reg_reg_stack);
 
     if (reg_reg_stack.back() != asmjit::x86::xmm0)
         a.movaps(asmjit::x86::xmm0, reg_reg_stack.back());
