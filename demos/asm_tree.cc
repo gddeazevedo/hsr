@@ -5,6 +5,7 @@
 
 using Func = float(*)(void);
 
+// SSE registers
 std::vector<asmjit::x86::Vec> reg_pool = {
     asmjit::x86::xmm0, asmjit::x86::xmm1, asmjit::x86::xmm2,
     asmjit::x86::xmm3, asmjit::x86::xmm4, asmjit::x86::xmm5
