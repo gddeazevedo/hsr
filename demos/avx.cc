@@ -33,7 +33,7 @@ int main() {
     // forçando inicilizar para zero A ^ A = 0 para qualquer A
     a.xor_(index, index);
 
-    // asmjit::Label loop = a.newLabel();
+    // asmjit::Label loop = a.newLabel(); // loops serão usados para processar mais de 8 floats
     // a.bind(loop);
 
     // // Carregar 8 floats e calcular 10*x + 2
@@ -57,7 +57,7 @@ int main() {
     func(input.data(), output.data(), input.size());
 
     std::cout << "Resultados 10x + 2:\n";
-    for (size_t i = 0; i < input.size(); ++i) {
+    for (size_t i = 0; i < input.size(); i++) {
         std::cout << input[i] << " -> " << output[i] << std::endl;
     }
     
