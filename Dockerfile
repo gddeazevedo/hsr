@@ -2,22 +2,21 @@ FROM ubuntu:22.04
 
 RUN apt-get update && apt-get install -y \
     build-essential \
-    cmake \
-    git \
+    cmake gdb \
     && rm -rf /var/lib/apt/lists/*
 
 
-WORKDIR /app
+WORKDIR /hsr
 
-COPY asmjit /app/asmjit
+COPY asmjit /hsr/asmjit
 
 # Compila asmjit como biblioteca estática
-RUN cmake -S /app/asmjit -B /app/asmjit/build \
+RUN cmake -S /hsr/asmjit -B /hsr/asmjit/build \
     -DCMAKE_BUILD_TYPE=Release \
     -DASMJIT_STATIC=ON \
-    && cmake --build /app/asmjit/build --parallel \
-    && cmake --install /app/asmjit/build --prefix /usr/local
+    && cmake --build /hsr/asmjit/build --parallel \
+    && cmake --install /hsr/asmjit/build --prefix /usr/local
 
-COPY . /app
+COPY . .
 
 CMD ["/bin/bash"]

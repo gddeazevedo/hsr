@@ -7,7 +7,7 @@
 int main() {
     using Func = void(*)(const float*, float*, size_t);
 
-    asmjit::v1_17::JitRuntime rt;
+    asmjit::JitRuntime rt;
     asmjit::CodeHolder code;
     code.init(rt.environment(), rt.cpuFeatures());
     asmjit::x86::Assembler a(&code);
