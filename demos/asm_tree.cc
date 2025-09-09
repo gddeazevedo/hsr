@@ -106,7 +106,7 @@ int main() {
 
     asmjit::JitRuntime rt;
     asmjit::CodeHolder code;
-    code.init(rt.environment(), rt.cpuFeatures());
+    code.init(rt.environment(), rt.cpu_features());
     asmjit::x86::Assembler a(&code);
 
     a.push(asmjit::x86::rbp);
@@ -125,8 +125,8 @@ int main() {
 
     Func fn;
     asmjit::Error err = rt.add(&fn, &code);
-    if (err) {
-        std::cerr << "Erro ao compilar: " << err << "\n";
+    if ((bool)err) {
+        std::cerr << "Erro ao compilar: " << asmjit::DebugUtils::error_as_string(err) << "\n";
         return 1;
     }
 

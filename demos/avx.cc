@@ -9,7 +9,7 @@ int main() {
 
     asmjit::JitRuntime rt;
     asmjit::CodeHolder code;
-    code.init(rt.environment(), rt.cpuFeatures());
+    code.init(rt.environment(), rt.cpu_features());
     asmjit::x86::Assembler a(&code);
 
     asmjit::x86::Gp input_ptr = asmjit::x86::rdi; // Gp stands for general purpose register
@@ -17,6 +17,7 @@ int main() {
     asmjit::x86::Gp size = asmjit::x86::rdx;
     asmjit::x86::Gp index = asmjit::x86::rcx;
 
+    // 10x+2
     // em avx podemos armazenar 8 floats num registrador ymm 256 bits
     float ten[8] = {10.0f, 10.0f, 10.0f, 10.0f, 10.0f, 10.0f, 10.0f, 10.0f};
     float two[8] = {2.0f, 2.0f, 2.0f, 2.0f, 2.0f, 2.0f, 2.0f, 2.0f};
@@ -33,7 +34,7 @@ int main() {
     // forçando inicilizar para zero A ^ A = 0 para qualquer A
     a.xor_(index, index);
 
-    // asmjit::Label loop = a.newLabel(); // loops serão usados para processar mais de 8 floats
+    // asmjit::Label loop = a.new_label(); // loops serão usados para processar mais de 8 floats
     // a.bind(loop);
 
     // // Carregar 8 floats e calcular 10*x + 2

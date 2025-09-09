@@ -8,7 +8,7 @@ int main() {
     asmjit::JitRuntime rt;
 
     asmjit::CodeHolder code;
-    code.init(rt.environment(), rt.cpuFeatures());
+    code.init(rt.environment(), rt.cpu_features());
     asmjit::x86::Assembler a(&code);
 
 
@@ -30,8 +30,8 @@ int main() {
 
     asmjit::Error err = rt.add(&fn, &code);
 
-    if ( err) {
-        std::cerr << "Error: " << asmjit::DebugUtils::errorAsString(err) << std::endl;
+    if ((bool)err) {
+        std::cerr << "Error: " << asmjit::DebugUtils::error_as_string(err) << std::endl;
         return 1;
     }
 
