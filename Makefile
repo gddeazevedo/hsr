@@ -6,10 +6,7 @@ PWD=$(shell pwd)
 build:
 	docker build -t $(IMAGE) .
 
-bash:
-	docker exec -it $(CONTAINER_NAME) bash
-
-start:
+start-bash:
 	docker run -it --rm -v "$(PWD)":/hsr --name $(CONTAINER_NAME) $(IMAGE)
 
 run:
